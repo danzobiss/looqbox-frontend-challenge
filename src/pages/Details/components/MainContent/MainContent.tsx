@@ -54,8 +54,8 @@ const MainContent:React.FC<Props> = ({id, name, types, photo, height, weight, ba
             <PokemonPhoto src={photo} alt={name}/>
 
             <BasicCharacteristics>
-                <Box><p><HeightIcon />{height}m</p></Box>
-                <Box><p><WeightIcon />{weight}kg</p></Box>
+                <Box><p><HeightIcon />{((height as number) * 0.1).toFixed(1)}m</p></Box>
+                <Box><p><WeightIcon />{((weight as number) * 0.1).toFixed(1)}kg</p></Box>
                 <Box><p><StarsIcon />{base_xp}xp</p></Box>
             </BasicCharacteristics>
 
