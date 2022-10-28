@@ -16,26 +16,26 @@ import {
 } from './styles';
 
 interface Props {
-    id: number | undefined;
-    name: string | undefined;
+    id: number;
+    name: string;
     types: [
         {
             type: {
-                name: string | undefined;
+                name: string;
             };
         }
-    ] | undefined;
-    photo: string | undefined;
-    height: number | undefined;
-    weight: number | undefined;
-    base_xp: number | undefined;
+    ];
+    photo: string;
+    height: number;
+    weight: number;
+    base_xp: number;
     abilities: [
         {
             ability: {
-                name: string | undefined;
+                name: string;
             };
         }
-    ] | undefined;
+    ];
 }
 
 const MainContent:React.FC<Props> = ({id, name, types, photo, height, weight, base_xp, abilities}) => {

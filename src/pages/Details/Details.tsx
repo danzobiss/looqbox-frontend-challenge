@@ -35,28 +35,30 @@ const Details:React.FC = () => {
         <>
             {loading ? <Loading /> : <React.Fragment/>}
             <Container>
-                <Main className={`background-${details?.types[0].type.name}`}>
+                {details == undefined ? <></> : <>
+                
+                <Main className={`background-${details.types[0].type.name}`}>
                     <MainContent 
-                        id={details?.id} 
-                        name={details?.name}
-                        types={details?.types}
-                        photo={details?.sprites.other['official-artwork'].front_default}
-                        height={details?.height}
-                        weight={details?.weight}
-                        base_xp={details?.base_experience}
-                        abilities={details?.abilities}
+                        id={details.id} 
+                        name={details.name}
+                        types={details.types}
+                        photo={details.sprites.other['official-artwork'].front_default}
+                        height={details.height}
+                        weight={details.weight}
+                        base_xp={details.base_experience}
+                        abilities={details.abilities}
                     />
                 </Main>
 
                 <Section>
                     
-                    <Stats stats={details?.stats}/>
+                    <Stats stats={details!.stats}/>
 
                     <Gallery 
-                        sprites={details?.sprites}
+                        sprites={details!.sprites}
                     />
                 </Section>
-
+            </>}
             </Container>
         </>
     );
