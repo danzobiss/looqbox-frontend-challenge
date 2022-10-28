@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import PokemonData from '../../@types/PokemonData';
 
 import pokeAPI from '../../services/api';
@@ -21,11 +22,19 @@ const Details:React.FC = () => {
     const [details, setDetails] = useState<PokemonData>();
     const [loading, setLoading] = useState(true);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         pokeAPI.get(`pokemon/${id}`).then(({data}) => {
             setDetails(data);
         }).catch(err => {
-            console.error(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Pokémon not found!',
+            }).then(() => {
+                navigate(-1)
+            });
         }).finally(() => {
             setLoading(false);
         });
@@ -35,30 +44,32 @@ const Details:React.FC = () => {
         <>
             {loading ? <Loading /> : <React.Fragment/>}
             <Container>
-                {details == undefined ? <></> : <>
-                
-                <Main className={`background-${details.types[0].type.name}`}>
-                    <MainContent 
-                        id={details.id} 
-                        name={details.name}
-                        types={details.types}
-                        photo={details.sprites.other['official-artwork'].front_default}
-                        height={details.height}
-                        weight={details.weight}
-                        base_xp={details.base_experience}
-                        abilities={details.abilities}
-                    />
-                </Main>
+                {
+                details == undefined ? <React.Fragment/> : 
+                    <>
+                        <Main className={`background-${details.types[0].type.name}`}>
+                            <MainContent 
+                                id={details.id} 
+                                name={details.name}
+                                types={details.types}
+                                photo={details.sprites.other['official-artwork'].front_default}
+                                height={details.height}
+                                weight={details.weight}
+                                base_xp={details.base_experience}
+                                abilities={details.abilities}
+                            />
+                        </Main>
 
-                <Section>
-                    
-                    <Stats stats={details!.stats}/>
+                        <Section>
+                            
+                            <Stats stats={details!.stats}/>
 
-                    <Gallery 
-                        sprites={details!.sprites}
-                    />
-                </Section>
-            </>}
+                            <Gallery 
+                                sprites={details!.sprites}
+                            />
+                        </Section>
+                    </>
+                }
             </Container>
         </>
     );
