@@ -27,7 +27,7 @@ interface Props {
                 front_default: string;
             };
         };
-    } | undefined;
+    };
 }
 
 const Gallery: React.FC<Props> = ({sprites}) => {

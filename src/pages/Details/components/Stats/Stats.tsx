@@ -12,7 +12,7 @@ interface Props {
                 name: string;
             };
         }
-    ] | undefined;
+    ];
 }
 
 const Stats:React.FC<Props> = ({stats}) => {
