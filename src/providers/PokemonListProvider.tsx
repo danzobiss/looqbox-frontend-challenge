@@ -7,7 +7,7 @@ interface Props {
     children: any;
 }
 
-export const PokemonsProvider:React.FC<Props> = ({children}) => {
+export const PokemonListProvider:React.FC<Props> = ({children}) => {
     const [pokemons, setPokemons] = useState<PokemonListData[]>([]);
     const [offset, setOffset] = useState<number>(0);
 
@@ -24,4 +24,3 @@ export const usePokemons = () => {
 
     return { pokemons, setPokemons, offset, setOffset };
 }
-

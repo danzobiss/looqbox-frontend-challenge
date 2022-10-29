@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PokemonListData from "../../@types/PokemonListData";
 import Loading from "../../elements/Loading/Loading";
-import { usePokemons } from "../../providers/PokemonsProvider";
+import { usePokemons } from "../../providers/PokemonListProvider";
 import pokeAPI from "../../services/api";
 import Card from "./components/Card/Card";
 import SearchInput from "./components/SearchInput/SearchInput";

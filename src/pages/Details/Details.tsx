@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import PokemonData from '../../@types/PokemonData';
+import { usePokemonDetails } from "../../providers/PokemonDetailsProvider";
 
 import pokeAPI from '../../services/api';
 
@@ -21,23 +22,33 @@ const Details:React.FC = () => {
 
     const [details, setDetails] = useState<PokemonData>();
     const [loading, setLoading] = useState(true);
+    
+    const { pokemonDetails, setPokemonDetails} = usePokemonDetails();
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        pokeAPI.get(`pokemon/${id}`).then(({data}) => {
-            setDetails(data);
-        }).catch(err => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Pokémon not found!',
-            }).then(() => {
-                navigate(-1)
+        const alreadyHas = (pokemonDetails as PokemonData[]).find(info => info.id == parseInt(id as string));
+        if (alreadyHas == undefined) {
+            pokeAPI.get(`pokemon/${id}`).then(({data}) => {
+                setDetails(data);
+                pokemonDetails.push(data);
+                setPokemonDetails(pokemonDetails);
+            }).catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Pokémon not found!',
+                }).then(() => {
+                    navigate(-1)
+                });
+            }).finally(() => {
+                setLoading(false);
             });
-        }).finally(() => {
+        } else {
+            setDetails(alreadyHas);
             setLoading(false);
-        });
+        }
     }, []);
 
     return(

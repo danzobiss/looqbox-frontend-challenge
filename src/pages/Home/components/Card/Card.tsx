@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { usePokemonDetails } from "../../../../providers/PokemonDetailsProvider";
 
 import pokeAPI from "../../../../services/api";
 
@@ -16,15 +17,24 @@ interface Props {
 const Card: React.FC<Props> = ({url}) =>{
     const [details, setDetails] = useState<PokemonData>();
 
-    useEffect(() => {
-        const id = url.substring(34);
+    const { pokemonDetails, setPokemonDetails} = usePokemonDetails();
 
-        pokeAPI.get(`pokemon/${id}`).then(({data}) => {
-            setDetails(data);
-        }).catch(err => {
-            console.error(err);
-        }).finally(() => {
-        });
+    const id = url.substring(34).replace("/", "");
+    
+    useEffect(() => {
+        const alreadyHas = (pokemonDetails as PokemonData[]).find(info => info.id == parseInt(id));
+        if (alreadyHas == undefined) {
+            pokeAPI.get(`pokemon/${id}`).then(({data}) => {
+                setDetails(data);
+                pokemonDetails.push(data);
+                setPokemonDetails(pokemonDetails);
+            }).catch(err => {
+                console.error(err);
+            }).finally(() => {
+            });
+        } else {
+            setDetails(alreadyHas)
+        }
     }, []);
 
     return(
