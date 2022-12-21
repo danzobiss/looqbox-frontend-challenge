@@ -20,6 +20,7 @@ const SearchInput:React.FC = () => {
 
         setLoading(true);
         pokeAPI.get(`pokemon/${value}`).then(res => {
+            sessionStorage.setItem("scrollPosition", window.scrollY.toString())
             navigate(`details/${value}`);
         }).catch(err => {
             Swal.fire({

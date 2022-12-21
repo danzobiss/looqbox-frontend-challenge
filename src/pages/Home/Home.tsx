@@ -48,6 +48,8 @@ const Home:React.FC = () => {
         });
     }
 
+    let scroll = sessionStorage.getItem('scrollPosition');
+
     return(
         <>
             {loading ? <Loading /> : <React.Fragment/>}
@@ -66,6 +68,7 @@ const Home:React.FC = () => {
                 </PokemonList>
                 <Button onClick={() => handleClick()}>Show More Pokémons</Button>
             </Container>
+            {window.scrollTo(0, scroll ? parseInt(scroll) : 0)}
         </>
     )
 }

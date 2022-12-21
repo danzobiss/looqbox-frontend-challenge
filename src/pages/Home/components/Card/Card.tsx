@@ -38,7 +38,7 @@ const Card: React.FC<Props> = ({url}) =>{
     }, []);
 
     return(
-        <Container>
+        <Container onClick={() => sessionStorage.setItem("scrollPosition", window.scrollY.toString())}>
             {
                 details ? 
 
