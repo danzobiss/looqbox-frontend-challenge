@@ -38,26 +38,34 @@ const Card: React.FC<Props> = ({url}) =>{
     }, []);
 
     return(
-        <>
+        <Container>
             {
                 details ? 
-                <Container>
-                    <Link to={`/details/${details?.id}`}>
-                        <p>#{String(details?.id).padStart(3, '0')}</p>
-                        <PokemonPhoto 
-                            src={details ? details?.sprites.other["official-artwork"].front_default : gif} 
-                            alt={details?.name}
-                        />
-                        <h2>{details?.name}</h2>
-                        <Types>
-                            {details?.types.map(type => (
-                                <Type key={type.type.name} type={type.type.name}/>
-                            ))}
-                        </Types>
-                    </Link>
-                </Container> : <React.Fragment />
+
+                <Link to={`/details/${details.id}`}>
+                    <p>#{String(details.id).padStart(3, '0')}</p>
+                    <PokemonPhoto 
+                        src={details ? details.sprites.other["official-artwork"].front_default : gif} 
+                        alt={details.name}
+                    />
+                    <h2>{details.name}</h2>
+                    <Types>
+                        {details.types.map(type => (
+                            <Type key={type.type.name} type={type.type.name}/>
+                        ))}
+                    </Types>
+                </Link> 
+                    
+                : 
+
+                <Link to={"/"}>
+                    <PokemonPhoto 
+                        src={gif}
+                        alt="loading"
+                    />
+                </Link>
             }
-        </>
+        </Container>
     );
 }
 
