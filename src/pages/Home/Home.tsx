@@ -32,6 +32,7 @@ const Home:React.FC = () => {
     }, []);
 
     function handleClick() {
+        sessionStorage.setItem("scrollPosition", window.scrollY.toString())
         setOffset(offset + 20);
         if(offset == 0) {
             console.log("cachorro");
