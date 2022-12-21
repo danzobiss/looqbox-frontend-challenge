@@ -16,9 +16,11 @@ const SearchInput:React.FC = () => {
     function searchPokemon(event: any){
         event.preventDefault();
 
+        const value = sanitizer(input);
+
         setLoading(true);
-        pokeAPI.get(`pokemon/${input.trim().replace(" ", "-")}`).then(res => {
-            navigate(`details/${input.trim().replace(" ", "-")}`);
+        pokeAPI.get(`pokemon/${value}`).then(res => {
+            navigate(`details/${value}`);
         }).catch(err => {
             Swal.fire({
                 icon: 'error',
@@ -28,6 +30,19 @@ const SearchInput:React.FC = () => {
         }).finally(() => {
             setLoading(false);
         });
+    }
+
+    function sanitizer(text: string):string {
+        text = text.trim();
+        text = text.replace(/[^a-zA-Z0-9 ]/g, "");
+        
+        while (text.charAt(0) == '0') {
+            text = text.substring(1);
+        }
+
+        text = text.replaceAll(" ", "-");
+
+        return text;
     }
 
     return(
