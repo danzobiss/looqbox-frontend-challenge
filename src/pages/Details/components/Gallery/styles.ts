@@ -16,13 +16,18 @@ overflow-x: auto;
 `;
 
 export const Photos = styled.div`
+display: flex;
 flex-flow: row wrap;
+justify-content: space-between;
 max-height: 375px;
+gap: 8px;
 
 overflow-y: scroll;
 
 & > img {
     width: 150px;
+    height: 150px;
+    object-fit: contain;
 }
 
 @media (max-width: 768px) {

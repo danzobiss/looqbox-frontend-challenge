@@ -31,141 +31,44 @@ interface Props {
 }
 
 const Gallery: React.FC<Props> = ({sprites}) => {
+
+    const images: Array<Array<string>> = []
+
+    function convertToArray(object: Object, name: string): Array<Array<string>> {
+        let array = Object.entries(object)
+        array.map(element => {
+            if (element[1]) {
+                if(typeof element[1] != "string") {
+                    const returnedArray = convertToArray(element[1], name + ": " + element[0])
+                    element[1] = returnedArray
+                } else {
+                    element[0] = name + "_" + element[0]
+                    images.push(element)
+                }
+            }
+        })
+
+        return array;
+    }
+
+    convertToArray(sprites, "");
+    console.log(images);
+
+
     return (
         <Container>
             <h2>Gallery</h2>
 
             <Photos>
-                {/* Default sprites */}
-                {sprites?.front_default ?
+
+                {images.map(image => (
                     <img
-                        src={sprites?.front_default}
-                        alt="Front Default"
-                        title='Front Default'
+                        key={image[0]}
+                        src={image[1]}
+                        alt={image[0]}
+                        title={image[0].replaceAll("_", " ").substring(1).trim()}
                     />
-                    : <React.Fragment />}
-
-                {sprites?.back_default ?
-                    <img
-                        src={sprites?.back_default}
-                        alt="Back Default"
-                        title="Back Default"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Default female sprites */}
-                {sprites?.front_female ?
-                    <img
-                        src={sprites?.front_female}
-                        alt="Front Default Female"
-                        title="Front Default Female"
-                    />
-                    : <React.Fragment />}
-
-                {sprites?.back_female ?
-                    <img
-                        src={sprites?.back_female}
-                        alt="Back Default Female"
-                        title="Back Default Female"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Shiny sprites */}
-                {sprites?.front_shiny ?
-                    <img
-                        src={sprites?.front_shiny}
-                        alt="Front Shiny"
-                        title="Front Shiny"
-                    />
-                    : <React.Fragment />}
-
-                {sprites?.back_shiny ?
-                    <img
-                        src={sprites?.back_shiny}
-                        alt="Back Shiny"
-                        title="Back Shiny"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Shiny female sprites */}
-                {sprites?.front_shiny_female ?
-                    <img
-                        src={sprites?.front_shiny_female}
-                        alt="Front Shiny Female"
-                        title="Front Shiny Female"
-                    />
-                    : <React.Fragment />}
-
-                {sprites?.back_shiny_female ?
-                    <img
-                        src={sprites?.back_shiny_female}
-                        alt="Back Shiny Female"
-                        title="Back Shiny Female"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Dream world sprite */}
-                {sprites?.other.dream_world.front_default ?
-                    <img
-                        src={sprites?.other.dream_world.front_default}
-                        alt="Dream World Default"
-                        title="Dream World Default"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Dream world female sprite */}
-                {sprites?.other.dream_world.front_female ?
-                    <img
-                        src={sprites?.other.dream_world.front_female}
-                        alt="Dream World Female"
-                        title="Dream World Female"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Home default sprite */}
-                {sprites?.other.home.front_default ?
-                    <img
-                        src={sprites?.other.home.front_default}
-                        alt="Home Default"
-                        title="Home Default"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Home default female sprite */}
-                {sprites?.other.home.front_female ?
-                    <img
-                        src={sprites?.other.home.front_female}
-                        alt="Home Default Female"
-                        title="Home Default Female"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Home shiny sprite */}
-                {sprites?.other.home.front_shiny ?
-                    <img
-                        src={sprites?.other.home.front_shiny}
-                        alt="Home Shiny"
-                        title="Home Shiny"
-                    />
-                    : <React.Fragment />}
-
-
-                {/* Home shiny female sprite */}
-                {sprites?.other.home.front_shiny_female ?
-                    <img
-                        src={sprites?.other.home.front_shiny_female}
-                        alt="Home Shiny Female"
-                        title="Home Shiny Female"
-                    />
-                    : <React.Fragment />}
+                ))}
 
             </Photos>
         </Container>
