@@ -16,8 +16,9 @@ overflow-x: auto;
 `;
 
 export const Photos = styled.div`
-display: flex;
-flex-flow: row wrap;
+display: grid;
+grid-template-columns: repeat(auto-fit, 150px);
+/* flex-flow: row wrap; */
 justify-content: space-between;
 max-height: 375px;
 gap: 8px;
@@ -36,6 +37,11 @@ overflow-y: scroll;
 
     & > img {
         width: 128px;
+        height: 128px;
     }
+}
+
+@media (max-width: 403px) {
+    justify-content: center;
 }
 `;

@@ -2,29 +2,20 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     padding: 48px;
-    max-width: 1500px;
+    /* max-width: 1500px; */
     margin: auto;
 `;
 
 export const PokemonList = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 272px);
+    grid-template-columns: repeat(auto-fit, 272px);
     place-items: center;
 
     justify-content: space-between;
 
     gap: 16px;
 
-    @media (max-width: 1232px) {
-        grid-template-columns: repeat(3, 272px);
-    }
-
-    @media (max-width: 950px) {
-        grid-template-columns: repeat(2, 272px);
-    }
-
     @media (max-width: 650px) {
-        grid-template-columns: repeat(1, 272px);
         justify-content: center;
     }
 `;
