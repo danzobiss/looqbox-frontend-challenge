@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../../../../elements/Loading/Loading';
 import pokeAPI from '../../../../services/api';
+import logo from '../../../../assets/pokedex.png';
 
-import { Container, Input, SearchButton, SearchIcon } from './styles';
+import { Container, Logo, Form, Input, SearchButton, SearchIcon } from './styles';
 
 interface Props{
     set: React.Dispatch<React.SetStateAction<string>>
@@ -53,19 +54,22 @@ const SearchInput:React.FC<Props> = ({set}) => {
     return(
         <>
             {loading ? <Loading /> : <React.Fragment />}
-            <Container onSubmit={searchPokemon}>
-                <Input 
-                    type="search" 
-                    required 
-                    placeholder='Enter a pokemon name or its id'
-                    value={input} 
-                    onChange={(e) => {
-                        setInput(e.target.value);
-                        set(e.target.value);
-                        sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-                    }} 
-                />
-                <SearchButton type='submit'><SearchIcon /></SearchButton>
+            <Container>
+                <Logo src={logo} />
+                <Form onSubmit={searchPokemon}>
+                    <Input 
+                        type="search" 
+                        required 
+                        placeholder='Enter a pokemon name or its id'
+                        value={input} 
+                        onChange={(e) => {
+                            setInput(e.target.value);
+                            set(e.target.value);
+                            sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+                        }} 
+                    />
+                    <SearchButton type='submit'><SearchIcon /></SearchButton>
+                </Form>
             </Container>
         </>
     );

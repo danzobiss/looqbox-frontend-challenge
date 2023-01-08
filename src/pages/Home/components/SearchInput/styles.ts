@@ -1,15 +1,38 @@
 import styled from 'styled-components';
 import { Search } from '../../../../styles/Icons';
 
-export const Container = styled.form`
+export const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+
+    @media (max-width: 668px) {
+        flex-direction: column;
+        justify-content: center;
+    }
+`;
+
+export const Logo = styled.img`
+    height: 44px;
+    margin-right: 32px;
+
+    @media (max-width: 668px) {
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+`;
+
+export const Form = styled.form`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    width: 100%;
 
     gap: 16px;
-
-    margin-bottom: 24px;
 `;
 
 export const Input = styled.input`
