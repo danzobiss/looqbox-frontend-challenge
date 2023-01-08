@@ -1,22 +1,22 @@
 
 <h1 align="center">
   <br>
-  <img src="./src\assets\Poké_Ball_icon.svg.png" alt="Pokéball" width="200">
+  <img src="./public\favicon.ico" alt="Pokéball" width="200">
   <br>
   Pokedéx
   <br>
 </h1>
 
-<h4 align="center">A pokedéx created for the <a href="https://www.looqbox.com" target="_blank">looqbox</a> frontend challenge using the <a href="http://https://pokeapi.co" target="_blank">PokéAPI</a>.</h4>
+<h4 align="center">A pokedéx created for the <a href="https://www.looqbox.com" target="_blank" style="color: #40DA61">looqbox</a> frontend challenge using the <a href="http://https://pokeapi.co" target="_blank">PokéAPI</a>.</h4>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/danzobiss/looqbox-frontend-challenge?color=%2304D361">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/danzobiss/looqbox-frontend-challenge">
-  <a href="https://github.com/danzobiss/looqbox-frontend-challenge/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/danzobiss/looqbox-frontend-challenge">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/danzobiss/pokedex?color=%23b70ac7">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/danzobiss/pokedex">
+  <a href="https://github.com/danzobiss/pokedex/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/danzobiss/pokedex?color=%23ff1c1c">
   </a>
-   <a href="https://github.com/danzobiss/looqbox-frontend-challenge/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/danzobiss/looqbox-frontend-challenge?style=social">
+   <a href="https://github.com/danzobiss/pokedex/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/danzobiss/pokedex?style=social&color=%23ff1c1c">
   </a>
 </p>
 
@@ -47,7 +47,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/danzobiss/looqbox-frontend-challenge.git
+$ git clone https://github.com/danzobiss/pokedex.git
 
 # Go into the repository
 $ cd looqbox-frontend-challenge
