@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const PokemonList = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 272px);
     place-items: center;
 
     justify-content: space-between;
@@ -16,15 +16,15 @@ export const PokemonList = styled.div`
     gap: 16px;
 
     @media (max-width: 1232px) {
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(3, 272px);
     }
 
     @media (max-width: 950px) {
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 272px);
     }
 
     @media (max-width: 650px) {
-        grid-template-columns: repeat(1, auto);
+        grid-template-columns: repeat(1, 272px);
         justify-content: center;
     }
 `;

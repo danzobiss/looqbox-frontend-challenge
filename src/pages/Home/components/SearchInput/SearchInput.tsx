@@ -6,7 +6,11 @@ import pokeAPI from '../../../../services/api';
 
 import { Container, Input, SearchButton, SearchIcon } from './styles';
 
-const SearchInput:React.FC = () => {
+interface Props{
+    set: React.Dispatch<React.SetStateAction<string>>
+}
+
+const SearchInput:React.FC<Props> = ({set}) => {
 
     const [input, setInput] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
@@ -55,7 +59,11 @@ const SearchInput:React.FC = () => {
                     required 
                     placeholder='Enter a pokemon name or its id'
                     value={input} 
-                    onChange={(e) => setInput(e.target.value)} 
+                    onChange={(e) => {
+                        setInput(e.target.value);
+                        set(e.target.value);
+                        sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+                    }} 
                 />
                 <SearchButton type='submit'><SearchIcon /></SearchButton>
             </Container>

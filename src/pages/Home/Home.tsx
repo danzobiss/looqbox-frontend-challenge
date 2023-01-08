@@ -10,6 +10,7 @@ import { Container, PokemonList, Button } from './styles';
 
 const Home:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
+    const [inputText, setInputText] = useState<string>("");
 
     const { pokemons, setPokemons, offset, setOffset } = usePokemons();
 
@@ -55,21 +56,29 @@ const Home:React.FC = () => {
         <>
             {loading ? <Loading /> : <React.Fragment/>}
             <Container>
-                <SearchInput />
+                <SearchInput set={setInputText}/>
                 <PokemonList>
                     {
-                        pokemons?.map((pokemon: PokemonListData) => {
+                        pokemons.map((pokemon: PokemonListData) => {
                             if (pokemon) {
-                                return(
-                                    <Card key={pokemon.name} url={pokemon.url}/>
-                                )
+                                if (inputText === "") {
+                                    return(
+                                        <Card key={pokemon.name} url={pokemon.url}/>
+                                    )
+                                } else {
+                                    if (pokemon.name.includes(inputText.toLowerCase())) {
+                                        return(
+                                            <Card key={pokemon.name} url={pokemon.url}/>
+                                        )
+                                    }
+                                }
                             }
                         })
                     }
                 </PokemonList>
                 <Button onClick={() => handleClick()}>Show More Pokémons</Button>
             </Container>
-            {window.scrollTo(0, scroll ? parseInt(scroll) : 0)}
+            {inputText === "" ? window.scrollTo(0, scroll ? parseInt(scroll) : 0) : window.scrollTo(0, 0)}
         </>
     )
 }
