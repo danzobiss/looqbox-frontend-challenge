@@ -17,8 +17,7 @@ overflow-x: auto;
 
 export const Photos = styled.div`
 display: grid;
-grid-template-columns: repeat(auto-fit, 150px);
-/* flex-flow: row wrap; */
+grid-template-columns: repeat(auto-fill, 150px);
 justify-content: space-between;
 max-height: 375px;
 gap: 8px;

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const PokemonList = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, 272px);
+    grid-template-columns: repeat(auto-fill, 272px);
     place-items: center;
 
     justify-content: space-between;

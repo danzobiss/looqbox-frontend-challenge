@@ -9,7 +9,7 @@ export const Container = styled.div`
 
     margin-bottom: 24px;
 
-    @media (max-width: 668px) {
+    @media (max-width: 655px) {
         flex-direction: column;
         justify-content: center;
     }
@@ -19,7 +19,7 @@ export const Logo = styled.img`
     height: 44px;
     margin-right: 32px;
 
-    @media (max-width: 668px) {
+    @media (max-width: 655px) {
         margin-right: 0;
         margin-bottom: 16px;
     }
