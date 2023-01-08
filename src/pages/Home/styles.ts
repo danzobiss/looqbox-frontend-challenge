@@ -15,8 +15,8 @@ export const PokemonList = styled.div`
 
     gap: 16px;
 
-    @media (max-width: 650px) {
-        justify-content: center;
+    @media (max-width: 950px) {
+        justify-content: space-around;
     }
 `;
 

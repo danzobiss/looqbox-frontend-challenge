@@ -31,9 +31,15 @@ overflow-y: scroll;
     object-fit: contain;
 }
 
+@media (max-width: 1007px) {
+    justify-content: space-around;
+}
+
 @media (max-width: 768px) {
     max-height: unset;
     overflow-y: visible;
+
+    justify-content: space-between;
 
     & > img {
         width: 128px;
@@ -41,7 +47,7 @@ overflow-y: scroll;
     }
 }
 
-@media (max-width: 403px) {
-    justify-content: center;
+@media (max-width: 561px) {
+    justify-content: space-around;
 }
 `;
