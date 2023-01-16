@@ -13,6 +13,21 @@ overflow-x: auto;
     font-size: 32px;
     margin-bottom: 32px;
 }
+ 
+	& > ::-webkit-scrollbar {
+		width: .4rem;
+		border-radius: .5rem;
+		background-color: #0001;
+	}
+
+	& > ::-webkit-scrollbar-thumb {
+		border-radius: .5rem;
+		background-color: #0003;
+	}
+
+	& > ::-webkit-scrollbar-thumb:hover {
+		background-color: #0005;
+	}
 `;
 
 export const Photos = styled.div`
