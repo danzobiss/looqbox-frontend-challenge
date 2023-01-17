@@ -37,7 +37,7 @@ justify-content: space-between;
 max-height: 375px;
 gap: 8px;
 
-overflow-y: scroll;
+overflow-y: auto;
 
 & > img {
     width: 150px;
