@@ -8,10 +8,11 @@ import logo from '../../../../assets/pokedex.png';
 import { Container, Logo, Form, Input, SearchButton, SearchIcon } from './styles';
 
 interface Props{
-    set: React.Dispatch<React.SetStateAction<string>>
+    set: React.Dispatch<React.SetStateAction<string>>,
+    setShowing: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SearchInput:React.FC<Props> = ({set}) => {
+const SearchInput:React.FC<Props> = ({set, setShowing}) => {
 
     const [input, setInput] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
@@ -65,6 +66,7 @@ const SearchInput:React.FC<Props> = ({set}) => {
                         onChange={(e) => {
                             setInput(e.target.value);
                             set(e.target.value);
+                            setShowing(false);
                             sessionStorage.setItem("scrollPosition", window.scrollY.toString());
                         }} 
                     />

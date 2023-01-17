@@ -6,11 +6,12 @@ import pokeAPI from "../../services/api";
 import Card from "./components/Card/Card";
 import SearchInput from "./components/SearchInput/SearchInput";
 
-import { Container, PokemonList, Button } from './styles';
+import { Container, PokemonList, NotFound, Button } from './styles';
 
 const Home:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [inputText, setInputText] = useState<string>("");
+    const [showing, setShowing] = useState<boolean>(false);
 
     const { pokemons, setPokemons, offset, setOffset } = usePokemons();
 
@@ -56,17 +57,19 @@ const Home:React.FC = () => {
         <>
             {loading ? <Loading /> : <React.Fragment/>}
             <Container>
-                <SearchInput set={setInputText}/>
+                <SearchInput set={setInputText} setShowing={setShowing}/>
                 <PokemonList>
                     {
                         pokemons.map((pokemon: PokemonListData) => {
                             if (pokemon) {
                                 if (inputText === "") {
+                                    if(showing === false) setShowing(true);
                                     return(
                                         <Card key={pokemon.name} url={pokemon.url}/>
                                     )
                                 } else {
-                                    if (pokemon.name.includes(inputText.toLowerCase())) {
+                                    if (pokemon.name.includes(inputText.toLowerCase()) || pokemon.url.substring(34).replace("/", "").includes(inputText.toLowerCase())) {
+                                        if(showing === false) setShowing(true);
                                         return(
                                             <Card key={pokemon.name} url={pokemon.url}/>
                                         )
@@ -76,6 +79,7 @@ const Home:React.FC = () => {
                         })
                     }
                 </PokemonList>
+                {!showing ? <NotFound>No loaded pokémons with this name or id. Press "Enter" to try search anyway.</NotFound> : <React.Fragment />}
                 <Button onClick={() => handleClick()}>Show More Pokémons</Button>
             </Container>
             {inputText === "" ? window.scrollTo(0, scroll ? parseInt(scroll) : 0) : window.scrollTo(0, 0)}
